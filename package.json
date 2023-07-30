@@ -14,14 +14,11 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run lint && npm run build"
+      "pre-push": "npm run lint &&  && lint-staged"
     }
   },
   "lint-staged": {
-    "*": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{ts, json, css}": "git diff --cached --name-only -- prettier --write"
   },
   "dependencies": {
     "axios": "^1.4.0",
