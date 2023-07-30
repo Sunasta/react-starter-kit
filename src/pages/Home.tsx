@@ -8,10 +8,10 @@ const Home: React.FC = (): JSX.Element => {
     <section className="container mx-auto flex flex-1 flex-col justify-center items-center gap-y-2">
       <div className="flex">
         <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+          <img src={viteLogo} className="logo h-24 w-24" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src={reactLogo} className="logo react h-24 w-24" alt="React logo" />
         </a>
       </div>
       <h1>Vite + React</h1>

@@ -7,12 +7,12 @@ type ComponentProps = {
 };
 
 function Automations({ children }: ComponentProps) {
-  const { language } = useLanguageContext();
+  const { locale } = useLanguageContext();
   const { theme } = useThemeContext();
 
   React.useEffect(() => {
-    document.documentElement.setAttribute('lang', language);
-  }, [language]);
+    document.documentElement.setAttribute('lang', locale);
+  }, [locale]);
 
   React.useEffect(() => {
     document.documentElement.classList[theme === 'light' ? 'remove' : 'add']('dark');

@@ -25,8 +25,12 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
     const api_key = 'DqaVtTge1BP6llGQN4eLJw';
 
     const url = `https://api.i18nexus.com/project_resources/translations/${locale}/default.json?api_key=${api_key}`;
+    const options = {
+      method: 'GET',
+      headers: { 'Accept-Encoding': 'gzip, deflate, br' },
+    }
     const fetchLocale = async () => {
-      await fetch(url)
+      await fetch(url, options)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Failed to fetch translations');

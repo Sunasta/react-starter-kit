@@ -1,4 +1,5 @@
 import { supportedLanguages, useLanguageContext } from '../../context/Language';
+import { ReactCountryFlag } from 'react-country-flag';
 
 const LanguageSwitch = () => {
   const { locale, set } = useLanguageContext();
@@ -10,7 +11,17 @@ const LanguageSwitch = () => {
         onChange={(event) => set(event.target.value)}
       >
         {supportedLanguages.map((locale) => (
-          <option className="text-black dark:text-white hover:cursor-pointer" value={locale} key={locale}>
+          <option className="flex text-black dark:text-white hover:cursor-pointer" value={locale} key={locale}>
+            <ReactCountryFlag
+              className="emojiFlag"
+              countryCode={locale.toUpperCase()}
+              aria-label={`${locale} flag`}
+              style={{
+                fontSize: '2em',
+                lineHeight: '2em',
+              }}
+              svg
+            />
             {locale.toUpperCase()}
           </option>
         ))}
