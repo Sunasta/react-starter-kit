@@ -25,21 +25,28 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
     const api_key = 'DqaVtTge1BP6llGQN4eLJw';
 
     const url = `https://api.i18nexus.com/project_resources/translations/${locale}/default.json?api_key=${api_key}`;
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch translations');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setMessages(data);
-        setIsLoadingLocale(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsLoadingLocale(false);
-      });
+    const fetchLocale = async () => {
+      await fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch translations');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setMessages(data);
+          setIsLoadingLocale(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          setIsLoadingLocale(false);
+        });
+    }
+    fetchLocale();
+    const htmlEl = document.getElementsByTagName('html');
+    if (htmlEl && htmlEl[0]) {
+      htmlEl[0].setAttribute('lang', locale);
+    }
   }, [locale]);
 
   const setLanguage = React.useCallback(

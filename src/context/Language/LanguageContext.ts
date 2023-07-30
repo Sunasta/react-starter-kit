@@ -5,7 +5,7 @@ interface LanguageContextInterface {
   set: (locale: string) => void;
 }
 
-export const supportedLanguages = ['en', 'fr', 'es'];
+export const supportedLanguages = ['en', 'fr'];
 
 export const LanguageContext = React.createContext<LanguageContextInterface>({
   locale: 'fr',

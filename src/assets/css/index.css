@@ -65,7 +65,7 @@
   }
 
   a {
-    @apply text-indigo-400 no-underline;
+    @apply text-indigo-300 no-underline;
     @apply hover:text-indigo-100 hover:no-underline;
     &.active {
       @apply text-indigo-200;
