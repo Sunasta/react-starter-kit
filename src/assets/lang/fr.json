@@ -1,0 +1,30 @@
+{
+  "header": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "pages": {
+    "home": {
+      "title": "Accueil",
+      "content": "Ceci est la page d'accueil."
+    },
+    "about": {
+      "title": "À propos",
+      "content": "Ceci est la page à propos."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "Ceci est la page contact."
+    }
+  },
+  "footer": {
+    "text": "Ceci est le pied de page."
+  },
+  "error": {
+    "404": {
+      "title": "404",
+      "content": "Page non trouvée."
+    }
+  }
+}

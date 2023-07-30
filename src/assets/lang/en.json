@@ -1,0 +1,30 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "pages": {
+    "home": {
+      "title": "Home",
+      "content": "This is the home page."
+    },
+    "about": {
+      "title": "About",
+      "content": "This is the about page."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "This is the contact page."
+    }
+  },
+  "footer": {
+    "text": "This is the footer."
+  },
+  "error": {
+    "404": {
+      "title": "404",
+      "content": "Page not found."
+    }
+  }
+}
