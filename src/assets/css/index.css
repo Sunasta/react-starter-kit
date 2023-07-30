@@ -17,23 +17,23 @@
 
   #root {
     @apply bg-white text-gray-800;
-    @apply dark:bg-indigo-900 dark:text-white;
+    @apply dark:bg-neutral-900 dark:text-white;
   }
 
   header {
     @apply bg-white sticky text-white;
-    @apply dark:bg-indigo-900;
+    @apply dark:bg-neutral-900;
   }
   header a {
     @apply uppercase tracking-wide font-bold text-xl;
   }
 
   main {
-    @apply bg-white dark:bg-indigo-900;
+    @apply bg-white dark:bg-neutral-900;
   }
 
   footer {
-    @apply bg-white dark:bg-indigo-900;
+    @apply bg-white dark:bg-neutral-900;
   }
 
   h1 {
@@ -65,10 +65,10 @@
   }
 
   a {
-    @apply text-indigo-300 no-underline;
-    @apply hover:text-indigo-100 hover:no-underline;
+    @apply text-neutral-300 no-underline;
+    @apply hover:text-neutral-100 hover:no-underline;
     &.active {
-      @apply text-indigo-200;
+      @apply text-neutral-200;
     }
   }
 }

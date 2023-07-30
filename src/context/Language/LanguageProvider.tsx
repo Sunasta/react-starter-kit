@@ -11,7 +11,7 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoadingLocale, setIsLoadingLocale] = React.useState(true);
 
   const defaultLocale = browserLang({
-    languages: supportedLanguages,
+    languages: supportedLanguages as unknown as string[],
     fallback: 'en',
   });
 
@@ -20,11 +20,7 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   }, [defaultLocale, setLocale]);
 
   React.useEffect(() => {
-    // for some reason the key can't be imported from a .env file because it returns undefined so I just hard coded it in here for now
-    // TODO: figure out why the .env file isn't working
-    const api_key = 'DqaVtTge1BP6llGQN4eLJw';
-
-    const url = `https://api.i18nexus.com/project_resources/translations/${locale}/default.json?api_key=${api_key}`;
+    const url = `https://api.i18nexus.com/project_resources/translations/${locale}/default.json?api_key=${import.meta.env.VITE_I18NEXUS_API_KEY}`;
     const options = {
       method: 'GET',
       headers: { 'Accept-Encoding': 'gzip, deflate, br' },

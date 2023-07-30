@@ -1,31 +1,32 @@
 import { supportedLanguages, useLanguageContext } from '../../context/Language';
-import { ReactCountryFlag } from 'react-country-flag';
+import { languageNames } from '@/context/Language/LanguageContext';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 const LanguageSwitch = () => {
   const { locale, set } = useLanguageContext();
   return (
     <>
-      <select
-        className="text-black dark:text-white bg-slate-500 hover:cursor-pointer rounded-md p-2"
-        defaultValue={locale}
-        onChange={(event) => set(event.target.value)}
-      >
-        {supportedLanguages.map((locale) => (
-          <option className="flex text-black dark:text-white hover:cursor-pointer" value={locale} key={locale}>
-            <ReactCountryFlag
-              className="emojiFlag"
-              countryCode={locale.toUpperCase()}
-              aria-label={`${locale} flag`}
-              style={{
-                fontSize: '2em',
-                lineHeight: '2em',
-              }}
-              svg
-            />
-            {locale.toUpperCase()}
-          </option>
-        ))}
-      </select>
+      <Select value={locale} onValueChange={set}>
+        <SelectTrigger className='cursor-pointer w-32 text-black dark:text-white border rounded'>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent className='border rounded w-[var(--radix-select-trigger-width)]'>
+          <SelectGroup>
+            {supportedLanguages.map((locale) => (
+              <SelectItem key={locale} className='cursor-pointer text-neutral-800 data-[highlighted]:bg-neutral-100 dark:text-white dark:data-[highlighted]:bg-neutral-800' value={locale}>
+                {languageNames[locale]}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
     </>
   );
 };

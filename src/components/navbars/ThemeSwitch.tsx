@@ -7,9 +7,9 @@ const ThemeSwitch = () => {
   return (
     <button type="button" aria-label="theme-button" onClick={toggle}>
       {theme === 'light' ? (
-        <Sun className="text-black dark:text-white" />
+        <Sun className="text-yellow-500" />
       ) : (
-        <Moon className="text-black dark:text-white" />
+        <Moon className="dark:text-white" />
       )}
     </button>
   );
