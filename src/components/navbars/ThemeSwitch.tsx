@@ -1,6 +1,6 @@
 import { useThemeContext } from '../../context/Theme';
-import { ReactComponent as Sun } from '../../assets/images/sun.svg';
-import { ReactComponent as Moon } from '../../assets/images/moon.svg';
+import Sun from '../../assets/images/sun.svg?react';
+import Moon from '../../assets/images/moon.svg?react';
 
 const ThemeSwitch = () => {
   const { theme, toggle } = useThemeContext();

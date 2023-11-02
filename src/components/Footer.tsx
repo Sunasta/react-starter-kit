@@ -1,4 +1,4 @@
-import { ReactComponent as Github } from '../assets/images/github.svg';
+import Github from '../assets/images/github.svg?react';
 
 const Footer: React.FC = () => {
   return (

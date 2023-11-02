@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import Logo from '../../assets/images/logo.svg?react';
 import ThemeSwitch from './ThemeSwitch';
 import LanguageSwitch from './LanguageSwitch';
 import { FormattedMessage } from 'react-intl';
