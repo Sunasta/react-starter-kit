@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',
+  
   // You can set other default configurations here, like headers, etc.
 });
 
