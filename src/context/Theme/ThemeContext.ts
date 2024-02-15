@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext, useContext } from 'react';
 
 interface ThemeContextInterface {
   theme: string;
@@ -6,7 +6,7 @@ interface ThemeContextInterface {
   toggle: () => void;
 }
 
-export const ThemeContext = React.createContext<ThemeContextInterface>({
+export const ThemeContext = createContext<ThemeContextInterface>({
   theme: 'light',
   set: () => {},
   toggle: () => {},
@@ -15,6 +15,6 @@ export const ThemeContext = React.createContext<ThemeContextInterface>({
 // This is a hack to get the displayName to show up in the React DevTools.
 ThemeContext.displayName = 'ThemeContext';
 
-const useThemeContext = () => React.useContext(ThemeContext);
+const useThemeContext = () => useContext(ThemeContext);
 
 export default useThemeContext;

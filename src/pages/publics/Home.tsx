@@ -1,9 +1,9 @@
-import React from 'react';
-import reactLogo from '../assets/images/react.svg';
-import viteLogo from '../assets/images/vite.svg';
+import { ReactElement } from 'react';
 import { FormattedMessage } from 'react-intl';
+import reactLogo from '@/assets/images/react.svg';
+import viteLogo from '@/assets/images/vite.svg';
 
-const Home: React.FC = (): JSX.Element => {
+const Home = (): ReactElement | null => {
   return (
     <section className="container mx-auto flex flex-1 flex-col justify-center items-center gap-y-2">
       <div className="flex">
@@ -14,7 +14,7 @@ const Home: React.FC = (): JSX.Element => {
           <img src={reactLogo} className="logo react h-24 w-24" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1 className='text-5xl font-bold'>Vite + React</h1>
       <p className="read-the-docs">
         <FormattedMessage id="pages.home.read_the_docs" />
       </p>

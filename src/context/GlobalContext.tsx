@@ -1,4 +1,5 @@
 import React from 'react';
+import { AuthProvider } from './Auth';
 import { ThemeProvider } from './Theme';
 import { LanguageProvider } from './Language';
 import Automations from './Automations';
@@ -24,7 +25,7 @@ const combineComponents = (components: Component[]): Component =>
   );
 
 // add context providers here to combine them and avoid nesting for interactivity between contexts
-const GlobalContextProvider = combineComponents([ThemeProvider, LanguageProvider]);
+const GlobalContextProvider = combineComponents([AuthProvider, ThemeProvider, LanguageProvider]);
 
 function GlobalContexts({ children }: ComponentProps) {
   return (

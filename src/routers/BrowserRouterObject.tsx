@@ -1,8 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
-import BaseLayout from '../layouts/MainLayout';
-import Home from '../pages/Home';
-import Contact from '../pages/Contact';
-import { RootErrorBoundary } from '../utils/RouterErrorBoundary';
+import { AuthLayout, NotAuthLayout, RootLayout } from '@/layouts';
+import { Home, Contact, About, DashBoard, Users, Login, Register, NotFound } from '@/pages';
+import { RootErrorBoundary, AuthenticatedErrorBoundary } from '@/utils';
 
 /** *************> createBrowserRouter
  * @remarks
@@ -32,21 +31,70 @@ import { RootErrorBoundary } from '../utils/RouterErrorBoundary';
  *  @see {@link https://reactrouter.com/en/main/routers/create-browser-router#routes}
  */
 
+const notAuthRoutes = [
+  {
+    path: 'login',
+    element: <Login />,
+  },
+  {
+    path: 'register',
+    element: <Register />,
+  },
+  {
+    path: 'forgot-password',
+    element: <Login />,
+  }
+];
+
+const publicRoutes = [
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: 'contact',
+    element: <Contact />,
+  },
+  {
+    path: 'About',
+    element: <About />,
+  },
+  {
+    element: <NotAuthLayout />,
+    children: notAuthRoutes,
+  },
+];
+
+const authRoutes = [
+  {
+    path: 'dashboard',
+    element: <DashBoard />,
+  },
+  {
+    path: 'users',
+    element: <Users />,
+  }
+];
+
 export const routes = [
   {
     path: '/',
-    element: <BaseLayout />,
     errorElement: <RootErrorBoundary />,
     children: [
       {
-        index: true,
-        element: <Home />,
+        element: <RootLayout />,
+        children: publicRoutes,
       },
       {
-        path: 'contact',
-        element: <Contact />,
+        element: <AuthLayout />,
+        errorElement: <AuthenticatedErrorBoundary />,
+        children: authRoutes,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ];
 
