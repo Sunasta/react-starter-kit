@@ -24,8 +24,8 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
     const options = {
       method: 'GET',
       headers: { 'Accept-Encoding': 'gzip, deflate, br' },
-    }
-    const fetchLocale = async () => {
+    };
+    (async () => {
       await fetch(url, options)
         .then((response) => {
           if (!response.ok) {
@@ -41,8 +41,7 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
           console.error(error);
           setIsLoadingLocale(false);
         });
-    }
-    fetchLocale();
+    })();
     const htmlEl = document.getElementsByTagName('html');
     if (htmlEl && htmlEl[0]) {
       htmlEl[0].setAttribute('lang', locale);

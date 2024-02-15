@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext, useContext } from 'react';
 
 interface LanguageContextInterface {
   locale: string;
@@ -17,9 +17,9 @@ export const languageNames: Record<SupportedLanguage, string> = {
   ru: 'Русский',
   ja: '日本語',
   ar: 'العربية',
-}
+};
 
-export const LanguageContext = React.createContext<LanguageContextInterface>({
+export const LanguageContext = createContext<LanguageContextInterface>({
   locale: 'fr',
   set: () => {},
 });
@@ -27,6 +27,6 @@ export const LanguageContext = React.createContext<LanguageContextInterface>({
 // This is a hack to get the displayName to show up in the React DevTools.
 LanguageContext.displayName = 'LanguageContext';
 
-const useLanguageContext = () => React.useContext(LanguageContext);
+const useLanguageContext = () => useContext(LanguageContext);
 
 export default useLanguageContext;
