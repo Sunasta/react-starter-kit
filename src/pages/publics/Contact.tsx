@@ -103,7 +103,7 @@ const Contact = (): ReactElement | null => {
                   name="lastname"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel><FormattedMessage id='form.name' /></FormLabel>
+                      <FormLabel><FormattedMessage id='form.lastname' /></FormLabel>
                       <FormControl>
                         <Input type='text' {...field} />
                       </FormControl>
@@ -173,7 +173,7 @@ const Contact = (): ReactElement | null => {
                   name="tel"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel><FormattedMessage id='form.phone' /></FormLabel>
+                      <FormLabel><FormattedMessage id='form.message' /></FormLabel>
                       <FormControl>
                         <Textarea {...field} />
                       </FormControl>

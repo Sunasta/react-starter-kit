@@ -1,24 +1,20 @@
-import { Component, ReactElement, ReactNode, useEffect, useState } from 'react';
+import { Component, ReactElement, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import useWindowSize from '@/hooks/useWindowSize';
 import { cn } from '@/lib/utils';
 
+/** Components */ 
+import HeaderLogo from './HeaderLogo';
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem } from '@/components/ui/navigation-menu';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import LanguageSwitch from '@/components/LanguageSwitch';
 import Account from '@/components/Account';
 import { Separator } from '@/components/ui/separator';
-import HeaderLogo from './HeaderLogo';
-
-const Header = (): ReactElement => {
-  return (
-    <header className="grid md:grid-cols-[1fr_auto_1fr] w-full container mx-auto py-2">
-      <HeaderLogo />
-      <MainNav />
-      <SecondaryNav />
-    </header>
-  );
-};
+import { Popover, PopoverContent } from './ui/popover';
+import { PopoverTrigger } from '@radix-ui/react-popover';
+import { Button } from './ui/button';
+import { Menu } from 'lucide-react';
 
 interface NavbarLinksProps {
   path: string;
@@ -41,64 +37,95 @@ const NavLinks: NavbarLinksProps[] = [
   }
 ];
 
-const MainNav = (): ReactElement => {
-  const navLinks = NavLinks.map((link) => {
-    return (
-      <NavigationMenuItem>
-        <NavLink
-          key={link.path}
-          to={link.path}
-          end
-          className={({ isActive }): string => cn(
-            'text-sm font-medium p-3 rounded-lg transition-all hover:drop-shadow-xl',
-            isActive && 'underline underline-offset-8 decoration-primary pointer-events-none'
-          )}
-        >
-          {link.text}
-        </NavLink>
-      </NavigationMenuItem>
-    );
-  });
+const Header = (): ReactElement => {
+  const windowSize = useWindowSize();
+  const isMobile = windowSize.width !== undefined && windowSize.width <= 768;
 
   return (
-    <div className='flex'>
-      <NavigationMenu>
-        <NavigationMenuList className='flex flex-col md:flex-row md:gap-8'>
-          {navLinks}
-        </NavigationMenuList>
-      </NavigationMenu>
+    <header className="flex justify-between md:grid md:grid-cols-[1fr_auto_1fr] w-full container mx-auto py-2">
+      <HeaderLogo />
+      <MainNav isMobile={isMobile} />
+      {/* SecondaryNav will either be displayed in the Header or included inside HamburgerMenu */}
+      {!isMobile && <SecondaryNav isMobile={isMobile} />}
+    </header>
+  );
+};
+
+const MainNav = ({ isMobile }: { isMobile: boolean }): ReactElement => {
+  const navLinks: ReactElement<NavbarLinksProps>[] = NavLinks.map((link) => (
+    <NavigationMenuItem key={link.path}>
+      <NavLink
+        to={link.path}
+        end
+        className={({ isActive }): string => cn(
+          'text-sm font-medium p-3 rounded-lg transition-all hover:drop-shadow-xl',
+          isActive && 'underline underline-offset-8 decoration-primary pointer-events-none'
+        )}
+      >
+        {link.text}
+      </NavLink>
+    </NavigationMenuItem>
+  ));
+
+  return (
+    <div className="flex">
+      {isMobile ? (
+        <HamburgerMenu links={navLinks} />
+      ) : (
+        <NavigationMenu>
+          <NavigationMenuList className="flex flex-col md:flex-row md:gap-8">
+            {navLinks}
+          </NavigationMenuList>
+        </NavigationMenu>
+      )}
     </div>
   );
 };
 
-const SecondaryNav = (): ReactElement => {
-  const getWindowSize = () => {
-    const { innerWidth, innerHeight } = window;
-    return { innerWidth, innerHeight };
-  }
+interface HamburgerMenuProps {
+  links: ReactElement<NavbarLinksProps>[];
+}
 
-  const [windowSize, setWindowSize] = useState(getWindowSize());
+const HamburgerMenu = ({ links }: HamburgerMenuProps): ReactElement => {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" className="md:hidden" aria-label="Toggle Menu">
+          <Menu className="w-6 h-6" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent side="bottom" align="start" className="w-64 p-4">
+        {/* Navigation Links */}
+        <NavigationMenu>
+          <NavigationMenuList className="flex flex-col gap-2">
+            {links}
+          </NavigationMenuList>
+        </NavigationMenu>
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize(getWindowSize());
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  });
+        {/* SecondaryNav inside the burger menu */}
+        <div className="mt-4">
+          <SecondaryNav isMobile={true} />
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+};
 
+const SecondaryNav = ({ isMobile }: { isMobile: boolean }): ReactElement => {
   return (
     <div className="flex flex-col md:flex-row gap-2 justify-end md:items-center">
       <Account />
       {
-        windowSize.innerWidth > 768 ?
-          <Separator orientation='vertical' className='h-6 mx-2' /> :
-          <Separator orientation='horizontal' />
+        isMobile ? (
+          <Separator orientation="horizontal" className="my-2" />
+        ) : (
+          <Separator orientation="vertical" className="h-6 mx-2" />
+        )
       }
       <LanguageSwitch />
       <ThemeSwitch />
     </div>
   );
-}
+};
 
 export default Header;

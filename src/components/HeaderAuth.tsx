@@ -54,7 +54,7 @@ const UserMenu = () => {
       seed: 'b43af8a3-539a-4da4-94ac-9ccc36421b48',
       backgroundColor: ['f97316'],
       eyes: ['variant14']
-    }).toDataUriSync();
+    }).toDataUri();
   }, []);
 
   return (
