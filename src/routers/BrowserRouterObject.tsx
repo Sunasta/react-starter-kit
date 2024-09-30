@@ -1,6 +1,6 @@
 import { AuthLayout, NotAuthLayout, RootLayout } from '@/layouts';
 import { About, Contact, DashBoard, Home, Login, NotFound, Register, Users } from '@/pages';
-import { AuthenticatedErrorBoundary, RootErrorBoundary } from '@/utils';
+import { RootErrorBoundary } from '@/utils';
 import { createBrowserRouter } from 'react-router-dom';
 
 /** *************> createBrowserRouter
@@ -87,7 +87,6 @@ export const routes = [
       },
       {
         element: <AuthLayout />,
-        errorElement: <AuthenticatedErrorBoundary />,
         children: authRoutes,
       },
     ],
