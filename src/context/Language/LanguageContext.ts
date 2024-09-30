@@ -21,7 +21,9 @@ export const languageNames: Record<SupportedLanguage, string> = {
 
 export const LanguageContext = createContext<LanguageContextInterface>({
   locale: 'fr',
-  set: () => {},
+  set: (locale: string) => {
+    console.warn(`set function not implemented. Tried to set locale to ${locale}`);
+  },
 });
 
 // This is a hack to get the displayName to show up in the React DevTools.

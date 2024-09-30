@@ -1,10 +1,8 @@
-import { ReactElement } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '@/context/Auth';
 import { AuthHeader } from '@/components';
 import Sidebar from '@/components/Sidebar';
-
-
+import { useAuth } from '@/context/Auth';
+import type { ReactElement } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 
 const AuthLayout = (): ReactElement => {
   const auth = useAuth();
@@ -16,7 +14,7 @@ const AuthLayout = (): ReactElement => {
   return (
     <div id="AuthLayout" className="flex flex-col min-h-screen">
       <AuthHeader />
-      <div className='flex'>
+      <div className="flex">
         <Sidebar />
         <main className="flex-grow p-4">
           <Outlet />

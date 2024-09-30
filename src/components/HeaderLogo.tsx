@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
-import { Link } from "react-router-dom";
-import { useAuth } from "@/context/Auth";
 import Logo from '@/assets/images/logo.svg?react';
+import { useAuth } from '@/context/Auth';
+import type { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 
 const HeaderLogo = (): ReactElement => {
   const auth = useAuth();
@@ -12,6 +12,6 @@ const HeaderLogo = (): ReactElement => {
       <strong className="dark:text-white">SUNASTA</strong>
     </Link>
   );
-}
+};
 
 export default HeaderLogo;

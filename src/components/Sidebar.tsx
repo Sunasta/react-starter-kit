@@ -1,6 +1,6 @@
-import { Component, ReactElement, ReactNode } from 'react';
-import { NavLink } from 'react-router-dom';
+import type { Component, ReactElement, ReactNode } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { NavLink } from 'react-router-dom';
 
 interface SidebarLinksProps {
   path: string;
@@ -26,7 +26,9 @@ const Sidebar = (): ReactElement => {
         key={link.path}
         to={link.path}
         end
-        className={(props: { isActive: boolean }): string => `${props.isActive && 'font-bold bg-primary dark:bg-primary text-white pointer-events-none'} p-3 rounded-lg transition-all hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white`}
+        className={(props: { isActive: boolean }): string =>
+          `${props.isActive && 'font-bold bg-primary dark:bg-primary text-white pointer-events-none'} p-3 rounded-lg transition-all hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white`
+        }
       >
         {link.text}
       </NavLink>
@@ -35,8 +37,8 @@ const Sidebar = (): ReactElement => {
 
   return (
     <div className="flex flex-col bg-gray w-64 min-h-screen border-r">
-      <div className='flex flex-col flex-grow gap-y-2 p-4'>{sidebarLinks}</div>
-    </div >
+      <div className="flex flex-col flex-grow gap-y-2 p-4">{sidebarLinks}</div>
+    </div>
   );
 };
 

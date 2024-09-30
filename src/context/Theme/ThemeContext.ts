@@ -8,8 +8,12 @@ interface ThemeContextInterface {
 
 export const ThemeContext = createContext<ThemeContextInterface>({
   theme: 'light',
-  set: () => {},
-  toggle: () => {},
+  set: (newtheme: 'light' | 'dark') => {
+    console.warn(`set function not implemented. Tried to set theme to ${newtheme}`);
+  },
+  toggle: () => {
+    console.warn('toggle function not implemented.');
+  },
 });
 
 // This is a hack to get the displayName to show up in the React DevTools.

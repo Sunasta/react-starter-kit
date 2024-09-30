@@ -1,8 +1,7 @@
-import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from '@/context/Auth';
+import { Navigate, Outlet } from 'react-router-dom';
 
 const NotAuthLayout = () => {
-
   const auth = useAuth();
 
   if (auth.token) {
@@ -10,6 +9,6 @@ const NotAuthLayout = () => {
   }
 
   return <Outlet />;
-}
+};
 
 export default NotAuthLayout;

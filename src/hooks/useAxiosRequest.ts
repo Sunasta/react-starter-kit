@@ -1,9 +1,9 @@
+import axios, { type AxiosRequestConfig, type AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',
-  
+
   // You can set other default configurations here, like headers, etc.
 });
 
@@ -17,7 +17,7 @@ export function useAxios<T>(url: string, config?: AxiosRequestConfig) {
       try {
         const response: AxiosResponse<T> = await axiosInstance.get(url, config);
         setData(response.data);
-      } catch (error) {
+      } catch {
         setError('An error occurred while fetching the data.');
       } finally {
         setLoading(false);

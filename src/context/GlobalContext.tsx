@@ -1,9 +1,9 @@
-import React from 'react';
+import type React from 'react';
 import { AuthProvider } from './Auth';
-import { ThemeProvider } from './Theme';
-import { LanguageProvider } from './Language';
 import Automations from './Automations';
+import { LanguageProvider } from './Language';
 import Persist from './Persist';
+import { ThemeProvider } from './Theme';
 
 type ComponentProps = {
   children: React.ReactNode;

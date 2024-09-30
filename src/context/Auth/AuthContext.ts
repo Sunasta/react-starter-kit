@@ -20,8 +20,13 @@ interface LoginContextInterface {
 export const AuthContext = createContext<LoginContextInterface>({
   token: '',
   user: null,
-  loginAction: async () => {},
-  logOut: () => {},
+  loginAction: async () => {
+    throw new Error('loginAction not implemented');
+  },
+  logOut: () => {
+    // Implement log out functionality here
+    console.log('User logged out');
+  },
 });
 
 // This is a hack to get the displayName to show up in the React DevTools.

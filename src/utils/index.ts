@@ -1,1 +1,5 @@
-export { Fallback, RootErrorBoundary, AuthenticatedErrorBoundary } from './RouterErrorBoundary';
+export {
+  Fallback,
+  RootErrorBoundary,
+  AuthenticatedErrorBoundary,
+} from './RouterErrorBoundary';

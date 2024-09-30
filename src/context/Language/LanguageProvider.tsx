@@ -1,25 +1,25 @@
-import React from 'react';
-import { LanguageContext, supportedLanguages } from './LanguageContext';
-import { IntlProvider, MessageFormatElement } from 'react-intl';
 import browserLang from 'browser-lang';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { IntlProvider, type MessageFormatElement } from 'react-intl';
+import { LanguageContext, supportedLanguages } from './LanguageContext';
 
 const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [locale, setLocale] = React.useState('fr');
-  const [messages, setMessages] = React.useState<
-    Record<string, string> | Record<string, MessageFormatElement[]> | undefined
-  >(undefined);
-  const [isLoadingLocale, setIsLoadingLocale] = React.useState(true);
+  const [locale, setLocale] = useState('fr');
+  const [messages, setMessages] = useState<Record<string, string> | Record<string, MessageFormatElement[]> | undefined>(
+    undefined,
+  );
+  const [isLoadingLocale, setIsLoadingLocale] = useState(true);
 
   const defaultLocale = browserLang({
     languages: supportedLanguages as unknown as string[],
     fallback: 'en',
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLocale(defaultLocale);
-  }, [defaultLocale, setLocale]);
+  }, [defaultLocale]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const url = `https://api.i18nexus.com/project_resources/translations/${locale}/default.json?api_key=${import.meta.env.VITE_I18NEXUS_API_KEY}`;
     const options = {
       method: 'GET',
@@ -48,14 +48,11 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [locale]);
 
-  const setLanguage = React.useCallback(
-    (newLanguage: string) => {
-      setLocale(newLanguage);
-    },
-    [setLocale],
-  );
+  const setLanguage = useCallback((newLanguage: string) => {
+    setLocale(newLanguage);
+  }, []);
 
-  const value = React.useMemo(
+  const value = useMemo(
     () => ({
       locale,
       set: setLanguage,

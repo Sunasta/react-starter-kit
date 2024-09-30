@@ -1,12 +1,13 @@
-import { UsersTable } from "@/components";
-import { ReactElement } from "react";
+import { UsersTable } from '@/components';
+import type { ReactElement } from 'react';
 
 const Users = (): ReactElement => {
   return (
     <div className="flex flex-col h-full flex-grow">
-      <h1 className='text-2xl'>Users</h1>
+      <h1 className="text-2xl">Users</h1>
       <UsersTable />
-    </div>);
-}
+    </div>
+  );
+};
 
 export default Users;

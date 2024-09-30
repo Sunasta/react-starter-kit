@@ -1,5 +1,5 @@
-import { supportedLanguages, languageNames, useLanguageContext } from '@/context/Language';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { languageNames, supportedLanguages, useLanguageContext } from '@/context/Language';
 
 const LanguageSwitch = () => {
   const { locale, set } = useLanguageContext();

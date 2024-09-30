@@ -1,6 +1,6 @@
-import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { AuthLayout, RootLayout } from '@/layouts';
-import { Home, Contact, Login, DashBoard, Users, NotFound } from '@/pages';
+import { Contact, DashBoard, Home, Login, NotFound, Users } from '@/pages';
+import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

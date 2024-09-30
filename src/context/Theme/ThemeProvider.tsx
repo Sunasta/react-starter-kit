@@ -1,21 +1,18 @@
-import React from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { ThemeContext } from './ThemeContext';
 
 const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = useState('light');
 
-  const set = React.useCallback(
-    (newTheme: 'light' | 'dark') => {
-      setTheme(newTheme);
-    },
-    [setTheme],
-  );
+  const set = useCallback((newTheme: 'light' | 'dark') => {
+    setTheme(newTheme);
+  }, []);
 
-  const toggle = React.useCallback(() => {
+  const toggle = useCallback(() => {
     setTheme(theme === 'light' ? 'dark' : 'light');
-  }, [theme, setTheme]);
+  }, [theme]);
 
-  const value = React.useMemo(
+  const value = useMemo(
     () => ({
       theme,
       set,

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useLanguageContext } from './Language';
 import { useThemeContext } from './Theme';
@@ -20,20 +20,19 @@ interface ComponentProps {
 }
 
 const Persist = ({ children, mode = 'local' }: ComponentProps) => {
-  const [hydrated, setHydrated] = React.useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const languageContext = useLanguageContext();
   const themeContext = useThemeContext();
   const [cookies, setCookies] = useCookies(['language', 'theme']);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (hydrated) return;
     languageContext.set(mode === 'cookie' ? cookies.language : localStorage.language || 'fr');
     themeContext.set(mode === 'cookie' ? cookies.theme : localStorage.theme || 'light');
     setHydrated(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [hydrated, cookies.language, cookies.theme, mode, languageContext, themeContext]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!hydrated) return;
     if (mode === 'local') {
       localStorage.language = languageContext.locale;
@@ -44,8 +43,7 @@ const Persist = ({ children, mode = 'local' }: ComponentProps) => {
       setCookies('theme', themeContext.theme, { path: '/' });
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hydrated, languageContext.locale, themeContext.theme]);
+  }, [hydrated, languageContext.locale, themeContext.theme, mode, setCookies]);
   return <>{children}</>;
 };
 

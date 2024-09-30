@@ -1,6 +1,6 @@
-import { ReactElement } from 'react';
+import { Footer, Header } from '@/components';
+import type { ReactElement } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header, Footer } from '@/components';
 
 const RootLayout = (): ReactElement => {
   return (

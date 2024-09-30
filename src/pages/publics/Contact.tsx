@@ -1,19 +1,17 @@
-import { ReactElement, useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
-import { ToastContainer, toast } from 'react-toastify';
-import { init, sendForm } from '@emailjs/browser';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
-import { z } from 'zod';
+import { init, sendForm } from '@emailjs/browser';
+import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { type ReactElement, useState } from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { ToastContainer, toast } from 'react-toastify';
+import { z } from 'zod';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 init(`${import.meta.env.VITE_EMAILJS_USER_ID}`);
-
-
 
 const Contact = (): ReactElement | null => {
   const intl = useIntl();
@@ -22,12 +20,14 @@ const Contact = (): ReactElement | null => {
     firstname: z.string().min(2, { message: intl.formatMessage({ id: 'form.firstname.min' }) }),
     lastname: z.string().min(2, { message: intl.formatMessage({ id: 'form.firstname.min' }) }),
     email: z.string().email(),
-    tel: z.string()
+    tel: z
+      .string()
       .min(10, { message: intl.formatMessage({ id: 'form.firstname.min' }) })
       .max(15, { message: intl.formatMessage({ id: 'form.firstname.min' }) }),
-    message: z.string()
+    message: z
+      .string()
       .min(10, { message: intl.formatMessage({ id: 'form.firstname.min' }) })
-      .max(500, { message: intl.formatMessage({ id: 'form.firstname.min' }) })
+      .max(500, { message: intl.formatMessage({ id: 'form.firstname.min' }) }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -52,13 +52,13 @@ const Contact = (): ReactElement | null => {
       sendForm(
         `${import.meta.env.VITE_PUBLIC_EMAILJS_SERVICE_ID}`,
         `${import.meta.env.VITE_PUBLIC_EMAILJS_TEMPLATE_ID}`,
-        '#contact-form'
+        '#contact-form',
       ),
       {
         pending: <FormattedMessage id="form.pending" />,
         success: <FormattedMessage id="form.success" />,
         error: <FormattedMessage id="form.error" />,
-      }
+      },
     );
   };
 
@@ -68,11 +68,7 @@ const Contact = (): ReactElement | null => {
       <div className="flex flex-col flex-grow items-center justify-center">
         <ToastContainer stacked />
         <Form {...form}>
-          <form
-            id="contact-form"
-            className="w-full max-w-lg"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
+          <form id="contact-form" className="w-full max-w-lg" onSubmit={form.handleSubmit(onSubmit)}>
             <Input type="hidden" name="contact_number" value={contactNumber} />
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3">
@@ -81,9 +77,11 @@ const Contact = (): ReactElement | null => {
                   name="firstname"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel><FormattedMessage id='form.firstname' /></FormLabel>
+                      <FormLabel>
+                        <FormattedMessage id="form.firstname" />
+                      </FormLabel>
                       <FormControl>
-                        <Input type='text' {...field} />
+                        <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -92,9 +90,7 @@ const Contact = (): ReactElement | null => {
                 <ErrorMessage
                   name="firstname"
                   errors={form.formState.errors}
-                  render={({ message }) => (
-                    <div className="text-xs text-red-500 mt-1">{message}</div>
-                  )}
+                  render={({ message }) => <div className="text-xs text-red-500 mt-1">{message}</div>}
                 />
               </div>
               <div className="w-full md:w-1/2 px-3">
@@ -103,9 +99,11 @@ const Contact = (): ReactElement | null => {
                   name="lastname"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel><FormattedMessage id='form.lastname' /></FormLabel>
+                      <FormLabel>
+                        <FormattedMessage id="form.lastname" />
+                      </FormLabel>
                       <FormControl>
-                        <Input type='text' {...field} />
+                        <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -114,9 +112,7 @@ const Contact = (): ReactElement | null => {
                 <ErrorMessage
                   name="lastname"
                   errors={form.formState.errors}
-                  render={({ message }) => (
-                    <div className="text-xs text-red-500 mt-1">{message}</div>
-                  )}
+                  render={({ message }) => <div className="text-xs text-red-500 mt-1">{message}</div>}
                 />
               </div>
             </div>
@@ -127,9 +123,11 @@ const Contact = (): ReactElement | null => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel><FormattedMessage id='form.email' /></FormLabel>
+                      <FormLabel>
+                        <FormattedMessage id="form.email" />
+                      </FormLabel>
                       <FormControl>
-                        <Input type='email' {...field} />
+                        <Input type="email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -138,9 +136,7 @@ const Contact = (): ReactElement | null => {
                 <ErrorMessage
                   name="email"
                   errors={form.formState.errors}
-                  render={({ message }) => (
-                    <div className="text-xs text-red-500 mt-1">{message}</div>
-                  )}
+                  render={({ message }) => <div className="text-xs text-red-500 mt-1">{message}</div>}
                 />
               </div>
               <div className="w-full md:w-1/2 px-3">
@@ -149,9 +145,11 @@ const Contact = (): ReactElement | null => {
                   name="tel"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel><FormattedMessage id='form.phone' /></FormLabel>
+                      <FormLabel>
+                        <FormattedMessage id="form.phone" />
+                      </FormLabel>
                       <FormControl>
-                        <Input type='tel' {...field} />
+                        <Input type="tel" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -160,9 +158,7 @@ const Contact = (): ReactElement | null => {
                 <ErrorMessage
                   name="tel"
                   errors={form.formState.errors}
-                  render={({ message }) => (
-                    <div className="text-xs text-red-500 mt-1">{message}</div>
-                  )}
+                  render={({ message }) => <div className="text-xs text-red-500 mt-1">{message}</div>}
                 />
               </div>
             </div>
@@ -173,7 +169,9 @@ const Contact = (): ReactElement | null => {
                   name="tel"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel><FormattedMessage id='form.message' /></FormLabel>
+                      <FormLabel>
+                        <FormattedMessage id="form.message" />
+                      </FormLabel>
                       <FormControl>
                         <Textarea {...field} />
                       </FormControl>
@@ -184,9 +182,7 @@ const Contact = (): ReactElement | null => {
                 <ErrorMessage
                   name="tel"
                   errors={form.formState.errors}
-                  render={({ message }) => (
-                    <div className="text-xs text-red-500 mt-1">{message}</div>
-                  )}
+                  render={({ message }) => <div className="text-xs text-red-500 mt-1">{message}</div>}
                 />
               </div>
             </div>

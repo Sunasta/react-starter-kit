@@ -1,31 +1,16 @@
-import { ReactElement } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from '@/context/Auth';
+import type { ReactElement } from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { z } from 'zod';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useIntl } from 'react-intl';
-
-
+import { Link } from 'react-router-dom';
+import { z } from 'zod';
 
 const Register = (): ReactElement | null => {
   const intl = useIntl();
@@ -40,7 +25,12 @@ const Register = (): ReactElement | null => {
   const form = useForm<z.infer<typeof formSchema>>({
     mode: 'onChange',
     resolver: zodResolver(formSchema),
-    defaultValues: { username: '', email: '', password: '', passwordConfirmation: '' },
+    defaultValues: {
+      username: '',
+      email: '',
+      password: '',
+      passwordConfirmation: '',
+    },
   });
 
   const { loginAction } = useAuth();
@@ -57,13 +47,13 @@ const Register = (): ReactElement | null => {
     <>
       <ToastContainer />
       <div className="flex flex-col flex-grow items-center justify-center">
-        <Card className='w-full md:w-[350px] rounded-md'>
+        <Card className="w-full md:w-[350px] rounded-md">
           <CardHeader>
-            <CardTitle className='text-center'>Register</CardTitle>
+            <CardTitle className="text-center">Register</CardTitle>
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form className='flex flex-col gap-2 mb-2' onSubmit={form.handleSubmit(onSubmit)}>
+              <form className="flex flex-col gap-2 mb-2" onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
                   control={form.control}
                   name="username"
@@ -116,12 +106,16 @@ const Register = (): ReactElement | null => {
                     </FormItem>
                   )}
                 />
-                <Button className='mt-2' type="submit">Register</Button>
+                <Button className="mt-2" type="submit">
+                  Register
+                </Button>
               </form>
             </Form>
           </CardContent>
-          <CardFooter className='justify-center'>
-            <Link to="/login" className='text-primary'>Déjà inscrit ?</Link>
+          <CardFooter className="justify-center">
+            <Link to="/login" className="text-primary">
+              Déjà inscrit ?
+            </Link>
           </CardFooter>
         </Card>
       </div>

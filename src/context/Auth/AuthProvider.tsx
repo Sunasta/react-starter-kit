@@ -1,6 +1,6 @@
-import { ReactNode, useState } from 'react';
-import { Credentials, AuthContext } from '@/context/Auth';
+import { AuthContext, type Credentials } from '@/context/Auth';
 import errorHandler from '@/utils/errorHandler';
+import { type ReactNode, useState } from 'react';
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState(null);
@@ -16,7 +16,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         body: JSON.stringify(payload),
       });
       if (!response.ok) {
-        throw errorHandler('Erreur lors de la tentative d\'authentification');
+        throw errorHandler("Erreur lors de la tentative d'authentification");
       }
       const res = await response.json();
       if (!res.ok) {
@@ -37,8 +37,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return <AuthContext.Provider value={{ token, user, loginAction, logOut }}>{children}</AuthContext.Provider>;
-
-}
+};
 
 export default AuthProvider;
-

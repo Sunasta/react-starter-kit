@@ -1,20 +1,20 @@
-import { Component, ReactElement, ReactNode } from 'react';
-import { NavLink } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
 import useWindowSize from '@/hooks/useWindowSize';
 import { cn } from '@/lib/utils';
+import type { Component, ReactElement, ReactNode } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { NavLink } from 'react-router-dom';
 
-/** Components */ 
-import HeaderLogo from './HeaderLogo';
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem } from '@/components/ui/navigation-menu';
-import ThemeSwitch from '@/components/ThemeSwitch';
-import LanguageSwitch from '@/components/LanguageSwitch';
 import Account from '@/components/Account';
+import LanguageSwitch from '@/components/LanguageSwitch';
+import ThemeSwitch from '@/components/ThemeSwitch';
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { Separator } from '@/components/ui/separator';
-import { Popover, PopoverContent } from './ui/popover';
 import { PopoverTrigger } from '@radix-ui/react-popover';
-import { Button } from './ui/button';
 import { Menu } from 'lucide-react';
+/** Components */
+import HeaderLogo from './HeaderLogo';
+import { Button } from './ui/button';
+import { Popover, PopoverContent } from './ui/popover';
 
 interface NavbarLinksProps {
   path: string;
@@ -34,7 +34,7 @@ const NavLinks: NavbarLinksProps[] = [
   {
     path: '/contact',
     text: <FormattedMessage id="pages.contact" />,
-  }
+  },
 ];
 
 const Header = (): ReactElement => {
@@ -57,10 +57,12 @@ const MainNav = ({ isMobile }: { isMobile: boolean }): ReactElement => {
       <NavLink
         to={link.path}
         end
-        className={({ isActive }): string => cn(
-          'text-sm font-medium p-3 rounded-lg transition-all hover:drop-shadow-xl',
-          isActive && 'underline underline-offset-8 decoration-primary pointer-events-none'
-        )}
+        className={({ isActive }): string =>
+          cn(
+            'text-sm font-medium p-3 rounded-lg transition-all hover:drop-shadow-xl',
+            isActive && 'underline underline-offset-8 decoration-primary pointer-events-none',
+          )
+        }
       >
         {link.text}
       </NavLink>
@@ -73,9 +75,7 @@ const MainNav = ({ isMobile }: { isMobile: boolean }): ReactElement => {
         <HamburgerMenu links={navLinks} />
       ) : (
         <NavigationMenu>
-          <NavigationMenuList className="flex flex-col md:flex-row md:gap-8">
-            {navLinks}
-          </NavigationMenuList>
+          <NavigationMenuList className="flex flex-col md:flex-row md:gap-8">{navLinks}</NavigationMenuList>
         </NavigationMenu>
       )}
     </div>
@@ -97,9 +97,7 @@ const HamburgerMenu = ({ links }: HamburgerMenuProps): ReactElement => {
       <PopoverContent side="bottom" align="start" className="w-64 p-4">
         {/* Navigation Links */}
         <NavigationMenu>
-          <NavigationMenuList className="flex flex-col gap-2">
-            {links}
-          </NavigationMenuList>
+          <NavigationMenuList className="flex flex-col gap-2">{links}</NavigationMenuList>
         </NavigationMenu>
 
         {/* SecondaryNav inside the burger menu */}
@@ -115,13 +113,11 @@ const SecondaryNav = ({ isMobile }: { isMobile: boolean }): ReactElement => {
   return (
     <div className="flex flex-col md:flex-row gap-2 justify-end md:items-center">
       <Account />
-      {
-        isMobile ? (
-          <Separator orientation="horizontal" className="my-2" />
-        ) : (
-          <Separator orientation="vertical" className="h-6 mx-2" />
-        )
-      }
+      {isMobile ? (
+        <Separator orientation="horizontal" className="my-2" />
+      ) : (
+        <Separator orientation="vertical" className="h-6 mx-2" />
+      )}
       <LanguageSwitch />
       <ThemeSwitch />
     </div>

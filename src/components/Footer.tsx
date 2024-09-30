@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import Github from '../assets/images/github.svg?react';
 
 const Footer = (): ReactNode => {

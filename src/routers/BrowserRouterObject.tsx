@@ -1,7 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom';
 import { AuthLayout, NotAuthLayout, RootLayout } from '@/layouts';
-import { Home, Contact, About, DashBoard, Users, Login, Register, NotFound } from '@/pages';
-import { RootErrorBoundary, AuthenticatedErrorBoundary } from '@/utils';
+import { About, Contact, DashBoard, Home, Login, NotFound, Register, Users } from '@/pages';
+import { AuthenticatedErrorBoundary, RootErrorBoundary } from '@/utils';
+import { createBrowserRouter } from 'react-router-dom';
 
 /** *************> createBrowserRouter
  * @remarks
@@ -43,7 +43,7 @@ const notAuthRoutes = [
   {
     path: 'forgot-password',
     element: <Login />,
-  }
+  },
 ];
 
 const publicRoutes = [
@@ -73,7 +73,7 @@ const authRoutes = [
   {
     path: 'users',
     element: <Users />,
-  }
+  },
 ];
 
 export const routes = [
@@ -98,6 +98,8 @@ export const routes = [
   },
 ];
 
-const router = createBrowserRouter(routes, { basename: import.meta.env.BASE_URL });
+const router = createBrowserRouter(routes, {
+  basename: import.meta.env.BASE_URL,
+});
 
 export default router;
