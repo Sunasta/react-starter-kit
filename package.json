@@ -56,7 +56,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.2",
     "@types/browser-lang": "^0.1.2",
-    "@types/node": "^22.6.1",
+    "@types/node": "^22.7.4",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.7.1",
