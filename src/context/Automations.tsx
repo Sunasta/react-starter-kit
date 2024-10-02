@@ -17,6 +17,7 @@ function Automations({ children }: ComponentProps) {
   React.useEffect(() => {
     document.documentElement.classList[theme === 'light' ? 'remove' : 'add']('dark');
   }, [theme]);
+
   return <>{children}</>;
 }
 
