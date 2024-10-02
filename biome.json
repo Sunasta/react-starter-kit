@@ -13,7 +13,7 @@
     "attributePosition": "auto",
     "bracketSpacing": true
   },
-  "organizeImports": { "enabled": true },
+  "organizeImports": { "enabled": false },
   "linter": {
     "enabled": true,
     "rules": {
@@ -89,7 +89,7 @@
         "useValidTypeof": "error"
       }
     },
-    "ignore": ["**/dist", "**/.eslintrc.cjs", "**/tailwind.config.cjs"]
+    "ignore": ["**/dist", "**/tailwind.config.ts"]
   },
   "javascript": {
     "formatter": {
